@@ -23,7 +23,7 @@ let snake, inputLeft, inputRight, inputUp, inputDown;
 let score, highScore;
 
 // Game state
-let gameState = "playing";
+let gameState = "welcome";
 
 // Initialize game constants
 const gameWidth = 800;
@@ -36,6 +36,10 @@ const borderRadius = 6;
 
 // Initialize game variables
 let heading = RIGHT;
+let music;
+let soundTurn;
+let soundCollect;
+let soundOver;
 
 
 // Initialize grid variables
@@ -53,58 +57,88 @@ let food = {
     size: 20
 };
 
+function preload() {
+    music = loadSound("assets/bgMusic.wav");
+    music.setVolume(0.5);
+    soundTurn = loadSound("assets/snakeTurn.wav");
+    soundCollect = loadSound("assets/collect.wav");
+    soundOver = loadSound("assets/gameOver.wav");
 
+
+}
 
 function setup() {
     createCanvas(gameWidth, gameHeight);
     frameRate(10);
 
     resetGame();
+
 }
 
 function update() {
     if (gameState === "playing") {
 
         snake.move();
-    }
 
-    if (snake.collides(food)) {
-        snake.tailSize++;
-        score++;
-        spawnFood();
-    }
 
-    for (let i = 0; i < snake.tail.length; i++) {
-        if (snake.collides(snake.tail[i])) {
-            console.log("Collided!");
-            gameState = "over";
+        if (snake.collides(food)) {
+            soundCollect.play();
+            snake.tailSize++;
+            score++;
+            spawnFood();
+        }
+    
+        for (let i = 0; i < snake.tail.length; i++) {
+            if (snake.collides(snake.tail[i])) {
+                console.log("Collided!");
+                soundOver.play();
+                gameState = "over";
+
+            }
         }
     }
+
+    if (gameState === "over") {
+        music.stop();
+        console.log("Game Over!");
+    }
+
 }
 
 function keyPressed() {
+    let keyWasPressed = false;
+
     switch (keyCode) {
         case inputLeft:
             if (heading !== RIGHT) {
                 heading = LEFT;
+                keyWasPressed = true;
+
             }
             break;
         case inputRight:
             if (heading !== LEFT) {
                 heading = RIGHT;
+                keyWasPressed = true;
             }
             break;
         case inputUp:
             if (heading !== DOWN) {
                 heading = UP;
+                keyWasPressed = true;
             }
             break;
         case inputDown:
             if (heading !== UP) {
                 heading = DOWN;
+                keyWasPressed = true;
             }
             break;
         
+    }
+
+    if (keyWasPressed) {
+        soundTurn.play();
     }
 
     // Debug
@@ -112,6 +146,12 @@ function keyPressed() {
         case "r":
             resetGame();
             break;
+        case "m":
+            if (music.isPaused()) {
+                music.play();
+            } else {
+                music.pause();
+            } 
     }
 }
 
@@ -143,6 +183,8 @@ function resetGame() {
     spawnFood();
 
     snake = new Snake(floor(random(0, gridSize)), floor(random(0, gridSize)));
+
+    music.play();
 }
 
 function displaySnakeHead() {
