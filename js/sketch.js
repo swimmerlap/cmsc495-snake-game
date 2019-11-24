@@ -16,6 +16,9 @@
  * 11/18/2019  - Added initial version of the Snake class.
  * (Danny Ramirez)
  * 
+ * 11/18/2019  - Added Game State machine and sound effects.
+ * (Danny Ramirez)
+ *              
  */
 
 // Declare variables
@@ -184,7 +187,10 @@ function resetGame() {
 
     snake = new Snake(floor(random(0, gridSize)), floor(random(0, gridSize)));
 
-    music.play();
+    if (!music.isPlaying()) {
+
+        music.play();
+    }
 }
 
 function displaySnakeHead() {
