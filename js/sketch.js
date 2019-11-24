@@ -184,7 +184,10 @@ function resetGame() {
 
     snake = new Snake(floor(random(0, gridSize)), floor(random(0, gridSize)));
 
-    music.play();
+    if (!music.isPlaying()) {
+
+        music.play();
+    }
 }
 
 function displaySnakeHead() {
