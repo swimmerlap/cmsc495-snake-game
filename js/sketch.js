@@ -16,6 +16,9 @@
  * 11/18/2019  - Added initial version of the Snake class.
  * (Danny Ramirez)
  * 
+ * 11/18/2019  - Added Game State machine and sound effects.
+ * (Danny Ramirez)
+ *              
  */
 
 // Declare variables
