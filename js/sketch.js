@@ -39,6 +39,8 @@ const borderRadius = 6;
 
 // Initialize game variables
 let heading = RIGHT;
+
+// Initialize music and sound
 let music;
 let soundTurn;
 let soundCollect;
