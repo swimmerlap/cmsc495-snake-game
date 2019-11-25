@@ -73,7 +73,11 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(gameWidth, gameHeight);
+    let canvas = createCanvas(gameWidth, gameHeight);
+    
+    // Position the canvas inside of .canvas-container
+    canvas.parent("canvas-container");
+
     frameRate(10);
 
     resetGame();
