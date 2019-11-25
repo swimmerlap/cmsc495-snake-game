@@ -18,6 +18,9 @@
  * 
  * 11/18/2019  - Added Game State machine and sound effects.
  * (Danny Ramirez)
+ * 
+ * 11/25/2019  - Changed the parent canvas container
+ * (Danny Ramirez)
  *              
  */
 
