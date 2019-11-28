@@ -187,6 +187,7 @@ function keyPressed() {
         if (gameState !== "pause") {
             console.log("Game paused!");
             gameState = "pause";
+            console.log("Game State =", gameState);
             if (music.isPlaying()) {
                 music.pause();
             }
@@ -194,6 +195,7 @@ function keyPressed() {
         } else {
             console.log("Game unpaused!");
             gameState = "playing";
+            console.log("Game State =", gameState);
             if (music.isPaused()) {
                 music.play();
             }
@@ -295,9 +297,10 @@ function initControls() {
     inputRight = RIGHT_ARROW;
     inputUp = UP_ARROW;
     inputDown = DOWN_ARROW;
-    inputRestart = "r";
-    inputDebug = 192;
     inputPause = "p";
+    inputDebug = 192;
+    inputRestart = "r";
+    inputMute = "m";
 }
 
 function spawnFood() {
