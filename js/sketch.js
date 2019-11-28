@@ -21,6 +21,11 @@
  * 
  * 11/25/2019  - Changed the parent canvas container
  * (Danny Ramirez)
+ * 
+ * 11/28/2019  - Added debugging options (collision, game state, input)
+ *             - Fixed the background music which was not looping.
+ *             - Added game pause feature
+ * (Danny Ramirez)
  *              
  */
 
@@ -92,7 +97,7 @@ function setup() {
     let canvas = createCanvas(gameWidth, gameHeight);
     
     // Position the canvas inside of .canvas-container
-    canvas.parent("canvas-container");
+    canvas.parent("#canvas-container");
 
     frameRate(10);
 
