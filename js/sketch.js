@@ -19,12 +19,17 @@
  * 11/18/2019  - Added Game State machine and sound effects.
  * (Danny Ramirez)
  * 
- * 11/25/2019  - Changed the parent canvas container
+ * 11/25/2019  - Changed the parent canvas container.
  * (Danny Ramirez)
  * 
  * 11/28/2019  - Added debugging options (collision, game state, input)
  *             - Fixed the background music which was not looping.
- *             - Added game pause feature
+ *             - Added game pause feature.
+ * (Danny Ramirez)
+ * 
+ * 11/29/2019  - Repositioned the grid to include the score and high score
+ *             - Changed the file format of the sounds from .wav to .mp3 in 
+ *               order to increase performance and decrease file size.
  * (Danny Ramirez)
  *              
  */
@@ -59,8 +64,10 @@ let soundOver;
 
 // Initialize grid variables
 let gridSize = 40;
+let gridStartX = 0;
+let gridStartY = 120;
 let cellSize = 20;
-const MAX_ROWS = 40;
+const MAX_ROWS = 35;
 const MAX_COLS = 40;
 
 // Initialize food variables
@@ -78,11 +85,11 @@ function preload() {
         console.log("Preloading assets...");
     }
 
-    music = loadSound("assets/bgMusic.wav");
+    music = loadSound("assets/bgMusic.mp3");
     music.setVolume(0.5);
-    soundTurn = loadSound("assets/snakeTurn.wav");
-    soundCollect = loadSound("assets/collect.wav");
-    soundOver = loadSound("assets/gameOver.wav");
+    soundTurn = loadSound("assets/snakeTurn.mp3");
+    soundCollect = loadSound("assets/collect.mp3");
+    soundOver = loadSound("assets/gameOver.mp3");
 
     if (debugOn) {
         console.log("Preload complete!");
@@ -232,9 +239,8 @@ function draw() {
     update();
 
     displayGrid();
-    // displayBoxScore();
-    // displayScore();
-    // displayHighScore();
+    displayScore();
+    displayHighScore();
 
     displaySnakeTail();
     displaySnakeHead();
@@ -256,7 +262,7 @@ function resetGame() {
     gameState = "playing";
     spawnFood();
 
-    snake = new Snake(floor(random(0, gridSize)), floor(random(0, gridSize)));
+    snake = new Snake(floor(random(0, MAX_COLS)), floor(random(0, MAX_ROWS)));
 
     if (!music.isPlaying()) {
         music.play();
@@ -271,13 +277,13 @@ function resetGame() {
 
 function displaySnakeHead() {
     fill(251, 203, 28);
-    rect(snake.position.x * cellSize, snake.position.y * cellSize, snake.size, snake.size, borderRadius);
+    rect(gridStartX + snake.position.x * cellSize, gridStartY + snake.position.y * cellSize, snake.size, snake.size, borderRadius);
 }
 
 function displaySnakeTail() {
     for (let i = 0; i < snake.tail.length; i++) {
         fill(251, 170, 0);
-        rect(snake.tail[i].position.x * cellSize, snake.tail[i].position.y * cellSize, snake.size, snake.size, borderRadius);
+        rect(gridStartX + snake.tail[i].position.x * cellSize, gridStartY + snake.tail[i].position.y * cellSize, snake.size, snake.size, borderRadius);
     }
 }
 
@@ -286,7 +292,7 @@ function displayGrid() {
         for (let column = 0; column < MAX_COLS; column++) {
             fill(34, 34, 34);
             stroke(22, 22, 22);
-            rect(column * cellSize, row * cellSize, cellSize, cellSize, borderRadius);
+            rect(gridStartX + column * cellSize, gridStartY + row * cellSize, cellSize, cellSize, borderRadius);
         }
     }
 
@@ -304,13 +310,13 @@ function initControls() {
 }
 
 function spawnFood() {
-    food.position.x = floor(random(0, gridSize));
-    food.position.y = floor(random(0, gridSize));
+    food.position.x = floor(random(0, MAX_COLS));
+    food.position.y = floor(random(0, MAX_ROWS - 1));
 }
 
 function displayFood() {
     fill(252, 83, 63);
-    rect(food.position.x * cellSize, food.position.y * cellSize, food.size, food.size, borderRadius);
+    rect(gridStartX + food.position.x * cellSize, gridStartY + food.position.y * cellSize, food.size, food.size, borderRadius);
 }
 
 function displayScore() {
@@ -329,7 +335,3 @@ function displayHighScore() {
     text(highScore, cellSize * 33  , 4 * cellSize);
 }
 
-function displayBoxScore() {
-    fill(22, 22, 22);
-    rect(0, 0, gameWidth, 6 * cellSize);
-}
