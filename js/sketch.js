@@ -25,7 +25,7 @@
  */
 
 // Declare variables
-let snake, inputLeft, inputRight, inputUp, inputDown;
+let snake, inputLeft, inputRight, inputUp, inputDown, inputDebug, inputRestart,inputMute, inputPause;
 let score, highScore;
 
 // Game state
@@ -35,13 +35,15 @@ let gameState = "welcome";
 const gameWidth = 800;
 const gameHeight = 800;
 const LEFT = 1;
-const RIGHT = 2;
-const UP = 3;
+const UP = 2;
+const RIGHT = 3;
 const DOWN = 4;
 const borderRadius = 6;
 
+
 // Initialize game variables
 let heading = RIGHT;
+let debugOn = true;
 
 // Initialize music and sound
 let music;
@@ -66,16 +68,27 @@ let food = {
 };
 
 function preload() {
+    if (debugOn) {
+        console.log("Debug Mode ON");
+        console.log("Preloading assets...");
+    }
+
     music = loadSound("assets/bgMusic.wav");
     music.setVolume(0.5);
     soundTurn = loadSound("assets/snakeTurn.wav");
     soundCollect = loadSound("assets/collect.wav");
     soundOver = loadSound("assets/gameOver.wav");
 
-
+    if (debugOn) {
+        console.log("Preload complete!");
+    }
 }
 
 function setup() {
+    if (debugOn) {
+        console.log("Loading game...");
+        console.log("Game State =", gameState);
+    }
     let canvas = createCanvas(gameWidth, gameHeight);
     
     // Position the canvas inside of .canvas-container
@@ -84,6 +97,10 @@ function setup() {
     frameRate(10);
 
     resetGame();
+
+    if (debugOn) {
+        console.log("Loading complete!");
+    }
 
 }
 
@@ -94,6 +111,9 @@ function update() {
 
 
         if (snake.collides(food)) {
+            if (debugOn) {
+                console.log("Food collected!");
+            }
             soundCollect.play();
             snake.tailSize++;
             score++;
@@ -102,9 +122,10 @@ function update() {
     
         for (let i = 0; i < snake.tail.length; i++) {
             if (snake.collides(snake.tail[i])) {
-                console.log("Collided!");
+                console.log("Snake crashed!");
                 soundOver.play();
                 gameState = "over";
+                console.log("Game State =", gameState);
 
             }
         }
@@ -151,19 +172,50 @@ function keyPressed() {
 
     if (keyWasPressed) {
         soundTurn.play();
+
+        if (debugOn) {
+            console.log("Key pressed:", heading);
+        }
+    }
+
+    if (key === inputPause) {
+        if (gameState !== "pause") {
+            console.log("Game paused!");
+            gameState = "pause";
+            if (music.isPlaying()) {
+                music.pause();
+            }
+
+        } else {
+            console.log("Game unpaused!");
+            gameState = "playing";
+            if (music.isPaused()) {
+                music.play();
+            }
+        }
     }
 
     // Debug
-    switch (key) {
-        case "r":
-            resetGame();
-            break;
-        case "m":
-            if (music.isPaused()) {
-                music.play();
-            } else {
-                music.pause();
-            } 
+    if (debugOn) {
+        switch (key) {
+            case inputRestart:
+                console.log("Reset game!");
+                resetGame();
+                break;
+            case inputMute:
+                if (music.isPaused()) {
+                    console.log("Music unmuted!");
+                    music.play();
+                } else {
+                    console.log("Music muted!");
+                    music.pause();
+                } 
+        }
+    }
+
+    if (keyCode === inputDebug) {
+        debugOn = !debugOn;
+        console.log("Debug Mode ON:", debugOn);
     }
 }
 
@@ -183,6 +235,9 @@ function draw() {
 }
 
 function resetGame() {
+    if (debugOn) {
+        console.log("Resetting game...");
+    }
     initControls();
 
     if (highScore < score) {
@@ -197,8 +252,13 @@ function resetGame() {
     snake = new Snake(floor(random(0, gridSize)), floor(random(0, gridSize)));
 
     if (!music.isPlaying()) {
-
         music.play();
+        music.setLoop(true);
+    }
+
+    if (debugOn) {
+        console.log("Game State =", gameState);
+        console.log("Reset complete!");
     }
 }
 
@@ -230,6 +290,9 @@ function initControls() {
     inputRight = RIGHT_ARROW;
     inputUp = UP_ARROW;
     inputDown = DOWN_ARROW;
+    inputRestart = "r";
+    inputDebug = 192;
+    inputPause = "p";
 }
 
 function spawnFood() {
