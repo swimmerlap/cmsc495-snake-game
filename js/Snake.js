@@ -12,6 +12,9 @@
  * 11/17/2019 - Initially created.
  * (Danny Ramirez)
  * 
+ * 11/28/2019 - Updated the wrapAround method to include a more flexible grid 
+ *              position.
+ * (Danny Ramirez)
  * 
  */
 
@@ -58,7 +61,8 @@ class Snake {
         this.position.x += this.direction.x;
         this.position.y += this.direction.y;
 
-        this.wrapAround(true, true, gridSize - 1);
+        this.wrapAround(true, false, MAX_COLS - 1);
+        this.wrapAround(false, true, MAX_ROWS - 1);
 
     }
 
