@@ -31,7 +31,14 @@
  *             - Changed the file format of the sounds from .wav to .mp3 in 
  *               order to increase performance and decrease file size.
  * (Danny Ramirez)
- *              
+ *             
+ * 11/30/2019 - Created if statement to change displays depending on gameState variable to allow welcome
+ *              screen before start of game. Only if statement container for welcome page for now. Added if
+ *              to check if a key was pressed to change gameState to in game to start. Commented out 
+ *              gameState variable change in reset() function to allow if statement for display change to work
+ *              in draw() function.
+ * (Rachael Schutzman)
+ * 
  */
 
 // Declare variables
@@ -238,14 +245,22 @@ function draw() {
     background(22, 22, 22);
 
     update();
+    // If statement to test gameState and display accordingly
+    if (gameState === "welcome") {
+       // Welcome message goes here!
 
-    display.grid();
-    display.score();
-    display.highScore();
+       if (keyIsPressed === true) {
+           gameState = "playing";
+       }
+    } else if (gameState === "playing") {
+        display.grid();
+        display.score();
+        display.highScore();
 
-    display.snakeTail();
-    display.snakeHead();
-    display.food();
+        display.snakeTail();
+        display.snakeHead();
+        display.food();
+    }
 }
 
 function resetGame() {
@@ -260,7 +275,7 @@ function resetGame() {
         highScore = 0;
     }
     score = 0;
-    gameState = "playing";
+    // gameState = "playing";
     spawnFood();
 
     display = new Display();
