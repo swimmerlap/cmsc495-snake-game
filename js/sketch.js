@@ -35,7 +35,8 @@
  */
 
 // Declare variables
-let snake, inputLeft, inputRight, inputUp, inputDown, inputDebug, inputRestart,inputMute, inputPause;
+let snake, display, 
+inputLeft, inputRight, inputUp, inputDown, inputDebug, inputRestart,inputMute, inputPause;
 let score, highScore;
 
 // Game state
@@ -238,13 +239,13 @@ function draw() {
 
     update();
 
-    displayGrid();
-    displayScore();
-    displayHighScore();
+    display.grid();
+    display.score();
+    display.highScore();
 
-    displaySnakeTail();
-    displaySnakeHead();
-    displayFood();
+    display.snakeTail();
+    display.snakeHead();
+    display.food();
 }
 
 function resetGame() {
@@ -262,6 +263,7 @@ function resetGame() {
     gameState = "playing";
     spawnFood();
 
+    display = new Display();
     snake = new Snake(floor(random(0, MAX_COLS)), floor(random(0, MAX_ROWS)));
 
     if (!music.isPlaying()) {
@@ -273,29 +275,6 @@ function resetGame() {
         console.log("Game State =", gameState);
         console.log("Reset complete!");
     }
-}
-
-function displaySnakeHead() {
-    fill(251, 203, 28);
-    rect(gridStartX + snake.position.x * cellSize, gridStartY + snake.position.y * cellSize, snake.size, snake.size, borderRadius);
-}
-
-function displaySnakeTail() {
-    for (let i = 0; i < snake.tail.length; i++) {
-        fill(251, 170, 0);
-        rect(gridStartX + snake.tail[i].position.x * cellSize, gridStartY + snake.tail[i].position.y * cellSize, snake.size, snake.size, borderRadius);
-    }
-}
-
-function displayGrid() {
-    for (let row = 0; row < MAX_ROWS; row++) {
-        for (let column = 0; column < MAX_COLS; column++) {
-            fill(34, 34, 34);
-            stroke(22, 22, 22);
-            rect(gridStartX + column * cellSize, gridStartY + row * cellSize, cellSize, cellSize, borderRadius);
-        }
-    }
-
 }
 
 function initControls() {
@@ -313,25 +292,3 @@ function spawnFood() {
     food.position.x = floor(random(0, MAX_COLS));
     food.position.y = floor(random(0, MAX_ROWS - 1));
 }
-
-function displayFood() {
-    fill(252, 83, 63);
-    rect(gridStartX + food.position.x * cellSize, gridStartY + food.position.y * cellSize, food.size, food.size, borderRadius);
-}
-
-function displayScore() {
-    fill(255);
-    textSize(26);
-    textFont("Impact");
-    text("Score", 2 * cellSize, 2 * cellSize);
-    text(score, 3 * cellSize, 4 * cellSize);
-}
-
-function displayHighScore() {
-    fill(255);
-    textSize(26);
-    textFont("Impact");
-    text("High Score", cellSize * 31  , 2 * cellSize);
-    text(highScore, cellSize * 33  , 4 * cellSize);
-}
-
