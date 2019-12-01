@@ -18,6 +18,17 @@
  * 11/17/2019 - Changed snake and grid methods to accomodate a more flexible
  *              grid.
  * (Danny Ramirez)
+ *
+ * 11/30/2019 - Modified x and y values for text functions in score and highScore functions 
+ *              so that full text displayed (previously cut off at top) and better, even placement of 
+ *              text on x-axis. Added functions to create an unfilled rectangle with white outline to 
+ *              score function to contain scores.
+ * (Rachael Schutzman)
+ *
+ * 12/01/2019 - Added noStroke() functions to snake and tail and right before text functions to keep from getting
+ *              an outline.
+ * (Rachael Schutzman)
+ *
  */
 
 class Display {
@@ -51,18 +62,23 @@ class Display {
     }
     
     score() {
+        noFill();
+        stroke(255);
+        rect(0, 30, gameWidth, 4 * cellSize);
         fill(255);
+        noStroke();
         textSize(26);
         textFont("Impact");
-        text("Score", 2 * cellSize, 2 * cellSize);
-        text(score, 3 * cellSize, 4 * cellSize);
+        text("Score", 3 * cellSize, 3 * cellSize);
+        text(score, 4 * cellSize, 5 * cellSize);
     }
     
     highScore() {
         fill(255);
+        noStroke();
         textSize(26);
         textFont("Impact");
-        text("High Score", cellSize * 31  , 2 * cellSize);
-        text(highScore, cellSize * 33  , 4 * cellSize);
+        text("High Score", cellSize * 31  , 3 * cellSize);
+        text(highScore, cellSize * 33  , 5 * cellSize);
     }
 }
