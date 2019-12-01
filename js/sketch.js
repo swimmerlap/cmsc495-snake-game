@@ -104,6 +104,7 @@ function preload() {
         console.log("Preloading assets...");
     }
 
+    regFont = loadFont('assets/fonts/ka1.woff');
     music = loadSound("assets/bgMusic.mp3");
     music.setVolume(0.5);
     soundTurn = loadSound("assets/snakeTurn.mp3");
@@ -261,13 +262,10 @@ function draw() {
     // If statement to test gameState and display accordingly
     if (gameState === "welcome") {
        // placeholder text
-       textSize(60);
+       textFont(regFont);
        fill(255);
-       stroke(255);
-       text("Snake Game", 200, 200);
-       
-       textSize(24);
-       text("Click any button to play", 250, 250);
+       textSize(26);
+       text("Click Enter to play", 200, 300);
 
        // if any button is pressed game starts
        if (keyIsPressed === true) {
@@ -276,15 +274,6 @@ function draw() {
                console.log("Game State =", gameState);
            }
        }
-    } else {
-        display.grid();
-        display.score();
-        display.highScore();
-
-        display.snakeTail();
-        display.snakeHead();
-        display.food();
-
     } else if (gameState === "pause") {
         // displays box with "Paused" text over paused game
         display.grid();
@@ -297,6 +286,7 @@ function draw() {
         fill(22, 22, 22);
         rect(cellSize * 12, cellSize * 18, cellSize * 16, cellSize * 6);
         textSize(26);
+	textFont(regFont);
         fill(255);
         text("- Paused -", cellSize * 17, cellSize * 21);
    } else if (gameState === "over") {        
@@ -313,9 +303,11 @@ function draw() {
         rect(cellSize * 12, cellSize * 18, cellSize * 16, cellSize * 6);
         textSize(26);
         fill(255);
+	textFont(regFont);
         text("- Game Over! -", cellSize * 16, cellSize * 21);
         textSize(20);
         fill(255);
+	textFont(regFont);
         text(" Press R to play again", cellSize *15, cellSize* 22);
    }
 }
