@@ -25,6 +25,10 @@
  *              score function to contain scores.
  * (Rachael Schutzman)
  *
+ * 12/01/2019 - Added noStroke() functions to snake and tail and right before text functions to keep from getting
+ *              an outline.
+ * (Rachael Schutzman)
+ *
  */
 
 class Display {
