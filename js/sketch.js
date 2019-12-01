@@ -39,6 +39,9 @@
  *              in draw() function.
  * (Rachael Schutzman)
  * 
+ * 12/02/2019 - Fixed paused game state from not showoing grid
+ *            - Changed resetGame with new game state check.
+ * (Danny Ramirez)
  */
 
 // Declare variables
@@ -255,7 +258,7 @@ function draw() {
                console.log("Game State =", gameState);
            }
        }
-    } else if (gameState === "playing") {
+    } else {
         display.grid();
         display.score();
         display.highScore();
@@ -278,7 +281,10 @@ function resetGame() {
         highScore = 0;
     }
     score = 0;
-    // gameState = "playing";
+
+    if (gameState !== "welcome") {
+        gameState = "playing";
+    }
     spawnFood();
 
     display = new Display();
