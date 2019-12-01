@@ -35,12 +35,14 @@ class Display {
 
     snakeHead() {
         fill(251, 203, 28);
+        stroke(22, 22, 22);
         rect(gridStartX + snake.position.x * cellSize, gridStartY + snake.position.y * cellSize, snake.size, snake.size, borderRadius);
     }
     
     snakeTail() {
         for (let i = 0; i < snake.tail.length; i++) {
             fill(251, 170, 0);
+            stroke(22, 22, 22);
             rect(gridStartX + snake.tail[i].position.x * cellSize, gridStartY + snake.tail[i].position.y * cellSize, snake.size, snake.size, borderRadius);
         }
     }
