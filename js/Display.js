@@ -62,6 +62,7 @@ class Display {
         stroke(255);
         rect(0, 30, gameWidth, 4 * cellSize);
         fill(255);
+        noStroke();
         textSize(26);
         textFont("Impact");
         text("Score", 3 * cellSize, 3 * cellSize);
@@ -70,6 +71,7 @@ class Display {
     
     highScore() {
         fill(255);
+        noStroke();
         textSize(26);
         textFont("Impact");
         text("High Score", cellSize * 31  , 3 * cellSize);
