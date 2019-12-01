@@ -38,8 +38,16 @@
  *              gameState variable change in reset() function to allow if statement for display change to work
  *              in draw() function.
  * (Rachael Schutzman)
+ *
+ * 12/01/2019 - Added if else statements to draw() for pause and over game states to show paused or stopped game 
+ *              with box and text stating the state of the game (paused or game over) over top paused or stopped 
+ *              game. Bug introduced due to removal of game state change in update(). Fixed with gameState change 
+ *              to switch case for restart button (r) being pressed and added text to game over screen to prompt 
+ *              user to select R to play again.
+ *              Added placeholder title and text to welcome page.
+ * (Rachael Schutzman)           
  * 
- * 12/02/2019 - Fixed paused game state from not showoing grid
+ * 12/02/2019 - Fixed paused game state from not showing grid
  *            - Changed resetGame with new game state check.
  * (Danny Ramirez)
  */
@@ -157,6 +165,7 @@ function update() {
     if (gameState === "over") {
         music.stop();
         console.log("Game Over!");
+
     }
 
 }
@@ -226,6 +235,7 @@ function keyPressed() {
             case inputRestart:
                 console.log("Reset game!");
                 resetGame();
+                gameState = "playing";
                 break;
             case inputMute:
                 if (music.isPaused()) {
@@ -250,8 +260,16 @@ function draw() {
     update();
     // If statement to test gameState and display accordingly
     if (gameState === "welcome") {
-       // Welcome message goes here!
+       // placeholder text
+       textSize(60);
+       fill(255);
+       stroke(255);
+       text("Snake Game", 200, 200);
+       
+       textSize(24);
+       text("Click any button to play", 250, 250);
 
+       // if any button is pressed game starts
        if (keyIsPressed === true) {
            gameState = "playing";
            if (debugOn) {
@@ -266,7 +284,40 @@ function draw() {
         display.snakeTail();
         display.snakeHead();
         display.food();
-    }
+
+    } else if (gameState === "pause") {
+        // displays box with "Paused" text over paused game
+        display.grid();
+        display.score();
+        display.highScore(); 
+        display.snakeTail();
+        display.snakeHead();
+        display.food();
+       
+        fill(22, 22, 22);
+        rect(cellSize * 12, cellSize * 18, cellSize * 16, cellSize * 6);
+        textSize(26);
+        fill(255);
+        text("- Paused -", cellSize * 17, cellSize * 21);
+   } else if (gameState === "over") {        
+        // displays box with "Game Over" text over ended game and prompts user to press
+        // "R" to restart
+        display.grid();
+	display.score();
+        display.highScore(); 
+        display.snakeTail();
+        display.snakeHead();
+        display.food();
+
+        fill(22, 22, 22);
+        rect(cellSize * 12, cellSize * 18, cellSize * 16, cellSize * 6);
+        textSize(26);
+        fill(255);
+        text("- Game Over! -", cellSize * 16, cellSize * 21);
+        textSize(20);
+        fill(255);
+        text(" Press R to play again", cellSize *15, cellSize* 22);
+   }
 }
 
 function resetGame() {
