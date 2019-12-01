@@ -7,15 +7,48 @@
  * Description: Main stylesheet
  *
  */
+/* == Include web fonts == */
+@font-face {
+    font-family: "Karmatic Arcade";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Karmatic Arcade"), url("assets/fonts/ka1.woff") format("woff");
+}
+@font-face {
+    font-family: "Press Start Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Press Start Regular"), url("assets/fonts/PrStart.woff") format("woff");
+}
+
+/* == General == */
 html, body {
     height: 100%;
 }
 
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center; /* Centers the sketch horizontally */
-    align-items: center; /* Centers the sketch vertically */
     background-color: rgb(22, 22, 22);
+    color: #ffffff;
+    font-family: "Press Start Regular", sans-serif;
+    line-height: 1.8;
+}
+
+#wrapper {
+    margin: 0 auto;
+    width: 800px;
+}
+
+.main-header,
+.main-footer {
+    text-align: center;
+    padding: 40px 0;
+}
+.screenshots {
+    text-align: center;
+}
+
+/* == Headers == */
+.game-title {
+    font-family: "Karmatic Arcade", sans-serif;
 }
 

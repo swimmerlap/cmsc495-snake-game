@@ -8,8 +8,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="canvas-container">
-    </div><!-- #canvas-container -->
+    <div id="wrapper">
+        <header class="main-header">
+            <h1 class="game-title">Snake Game</h1>
+        </header>
+        <div id="canvas-container">
+        </div><!-- #canvas-container -->
+        <div class="screenshots">
+                <img src="assets/imgs/screenshot.png" alt="Game Screnshot 2" class="fl-right">
+                <img src="assets/imgs/screenshot.png" alt="Game Screnshot 2" class="fl-right">
+        </div><!-- end .screenshots -->
+        <div class="content">
+            <h2>About</h2>
+            <p>The hungry snake searches the darken earth looking for food . If snake eats, you score a point.If the snake collides and eats itself, it dies, and you die too and the game is reset. The player with the highest score wins the game and places their initials at the top of the scoreboard.Enjoy!.</p> 
+            <h2>Controls</h2>
+            <p>Move: Arrow keys</p>
+            <p>Restart: R</p>
+            <p>Pause: P</p>
+            <p>Mute/Unmute Music: M</p>
+            <h2>Credits</h2>
+            <p>Music: 8bit blix (aka Lost Moons) by Questiion</p>
+            <p>Sound Effects: Coins by sacha-rush. Game Over Aracade by myfox14.</p>
+        </div><!-- end .content -->
+        <footer class="main-footer">
+            <p class="copyright">Copyright &copy; 2019 CMSC 495 Group 2.</p>
+        </footer><!-- end .main-footer -->
+    </div><!-- end #wrapper -->
+
     <script src="js/p5.js"></script>
     <script src="js/p5.sound.js"></script>
     <script src="js/Snake.js"></script>
