@@ -251,6 +251,9 @@ function draw() {
 
        if (keyIsPressed === true) {
            gameState = "playing";
+           if (debugOn) {
+               console.log("Game State =", gameState);
+           }
        }
     } else if (gameState === "playing") {
         display.grid();
