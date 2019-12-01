@@ -38,16 +38,18 @@
  *              gameState variable change in reset() function to allow if statement for display change to work
  *              in draw() function.
  * (Rachael Schutzman)
- * 
+ *
  * 12/01/2019 - Added if else statements to draw() for pause and over game states to show paused or stopped game 
  *              with box and text stating the state of the game (paused or game over) over top paused or stopped 
  *              game. Bug introduced due to removal of game state change in update(). Fixed with gameState change 
  *              to switch case for restart button (r) being pressed and added text to game over screen to prompt 
  *              user to select R to play again.
  *              Added placeholder title and text to welcome page.
- *   
  * (Rachael Schutzman)           
  * 
+ * 12/02/2019 - Fixed paused game state from not showing grid
+ *            - Changed resetGame with new game state check.
+ * (Danny Ramirez)
  */
 
 // Declare variables
@@ -270,8 +272,11 @@ function draw() {
        // if any button is pressed game starts
        if (keyIsPressed === true) {
            gameState = "playing";
+           if (debugOn) {
+               console.log("Game State =", gameState);
+           }
        }
-    } else if (gameState === "playing") {
+    } else {
         display.grid();
         display.score();
         display.highScore();
@@ -327,7 +332,10 @@ function resetGame() {
         highScore = 0;
     }
     score = 0;
-    // gameState = "playing";
+
+    if (gameState !== "welcome") {
+        gameState = "playing";
+    }
     spawnFood();
 
     display = new Display();
