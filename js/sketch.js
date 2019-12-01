@@ -309,6 +309,13 @@ function draw() {
         fill(255);
 	textFont(regFont);
         text(" Press R to play again", cellSize *15, cellSize* 22);
+   } else if (gameState ==="playing") {
+	display.grid();
+        display.score();
+        display.highScore(); 
+        display.snakeTail();
+        display.snakeHead();
+        display.food();
    }
 }
 
