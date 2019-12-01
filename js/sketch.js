@@ -289,7 +289,6 @@ function draw() {
         fill(22, 22, 22);
         rect(cellSize * 12, cellSize * 18, cellSize * 16, cellSize * 6);
         textSize(26);
-	//textFont(regFont);
         fill(255);
         text("- Paused -", cellSize * 17, cellSize * 21);
    } else if (gameState === "over") {        
@@ -306,11 +305,9 @@ function draw() {
         rect(cellSize * 12, cellSize * 18, cellSize * 16, cellSize * 6);
         textSize(26);
         fill(255);
-	textFont(regFont);
         text("- Game Over! -", cellSize * 16, cellSize * 21);
         textSize(20);
         fill(255);
-	//textFont(regFont);
         text(" Press R to play again", cellSize *15, cellSize* 22);
    } else if (gameState ==="playing") {
 	display.grid();
