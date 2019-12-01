@@ -50,6 +50,9 @@
  * 12/02/2019 - Fixed paused game state from not showing grid
  *            - Changed resetGame with new game state check.
  * (Danny Ramirez)
+ * 
+ * 12/01/2019 - Added loaded new text file in preload() and changed font type and text for welcome screen.
+ * (Rachael Schutzman)
  */
 
 // Declare variables
@@ -286,7 +289,7 @@ function draw() {
         fill(22, 22, 22);
         rect(cellSize * 12, cellSize * 18, cellSize * 16, cellSize * 6);
         textSize(26);
-	textFont(regFont);
+	//textFont(regFont);
         fill(255);
         text("- Paused -", cellSize * 17, cellSize * 21);
    } else if (gameState === "over") {        
@@ -307,7 +310,7 @@ function draw() {
         text("- Game Over! -", cellSize * 16, cellSize * 21);
         textSize(20);
         fill(255);
-	textFont(regFont);
+	//textFont(regFont);
         text(" Press R to play again", cellSize *15, cellSize* 22);
    } else if (gameState ==="playing") {
 	display.grid();
