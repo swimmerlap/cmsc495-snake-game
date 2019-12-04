@@ -53,12 +53,18 @@
  * 
  * 12/01/2019 - Added loaded new text file in preload() and changed font type and text for welcome screen.
  * (Rachael Schutzman)
+ * 
+ * 12/04/2019 - Disabled page scroll using keyboard to keep the canvas in
+ *              view at all times while playing the game.
+ * (Danny Ramirez)
  */
 
 // Declare variables
+let canvas, element;
 let snake, display, 
 inputLeft, inputRight, inputUp, inputDown, inputDebug, inputRestart,inputMute, inputPause;
 let score, highScore;
+
 
 // Game state
 let gameState = "welcome";
@@ -72,7 +78,6 @@ const RIGHT = 3;
 const DOWN = 4;
 const borderRadius = 6;
 
-
 // Initialize game variables
 let heading = RIGHT;
 let debugOn = true;
@@ -82,7 +87,6 @@ let music;
 let soundTurn;
 let soundCollect;
 let soundOver;
-
 
 // Initialize grid variables
 let gridSize = 40;
@@ -124,7 +128,12 @@ function setup() {
         console.log("Loading game...");
         console.log("Game State =", gameState);
     }
-    let canvas = createCanvas(gameWidth, gameHeight);
+
+    preventScroll();
+
+    canvas = createCanvas(gameWidth, gameHeight);
+    canvas.id("game-canvas");
+    canvas.class("cmsc495-group2");
     
     // Position the canvas inside of .canvas-container
     canvas.parent("#canvas-container");
@@ -132,14 +141,13 @@ function setup() {
     frameRate(10);
 
     resetGame();
-
-    if (debugOn) {
-        console.log("Loading complete!");
-    }
-
+    
 }
 
+
+
 function update() {
+
     if (gameState === "playing") {
 
         snake.move();
@@ -365,4 +373,14 @@ function initControls() {
 function spawnFood() {
     food.position.x = floor(random(0, MAX_COLS));
     food.position.y = floor(random(0, MAX_ROWS - 1));
+}
+
+function preventScroll() {
+    window.addEventListener("keydown", function(event) {
+        let keys = [32, 37, 38, 39, 40];
+
+        if(keys.indexOf(event.keyCode) > -1) {
+            event.preventDefault();
+        }
+    }, false);
 }
