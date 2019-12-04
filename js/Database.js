@@ -12,6 +12,7 @@
  * 11/30/2019 - Initially created.
  * (Rachael Schutzman)
  * 
+ * 12/04/2019 - Created findHighScore() and findInitials() functions.
  *
  */
 
