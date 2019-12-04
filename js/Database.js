@@ -13,6 +13,7 @@
  * (Rachael Schutzman)
  * 
  * 12/04/2019 - Created findHighScore() and findInitials() functions.
+ * (Rachael Schutzman)
  *
  */
 
