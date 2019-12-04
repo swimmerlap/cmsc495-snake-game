@@ -29,9 +29,12 @@ class Database {
             var dbo = db.db("snake");
             var mysort = { player_score: -1 };
             dbo.collection("scores").find({}, { projection: { _id: 0, player_intl: 1, player_score: 1 } }).sort(mysort).toArray(function(err, result) {
-                if (err) throw err;
-                db.close();
-                return result[0].player_score;
+                if (err) {
+                    return highScore = 0;
+                } else {
+                    db.close();
+                    return result[0].player_score;
+                }
             });
          });
    }
