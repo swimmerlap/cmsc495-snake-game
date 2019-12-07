@@ -18,6 +18,10 @@
                 <img src="assets/imgs/screenshot.png" alt="Game Screnshot 2" class="fl-right">
                 <img src="assets/imgs/screenshot.png" alt="Game Screnshot 2" class="fl-right">
         </div><!-- end .screenshots -->
+        <div class="high-score-table">
+            <h2>High Scores</h2>
+            <ol id="score-list"></ol>
+        </div><!-- end .high-score-table -->
         <div class="content">
             <h2>About</h2>
             <p>The hungry snake searches the darken earth looking for food . If snake eats, you score a point.If the snake collides and eats itself, it dies, and you die too and the game is reset. The player with the highest score wins the game and places their initials at the top of the scoreboard.Enjoy!.</p> 
@@ -35,8 +39,18 @@
         </footer><!-- end .main-footer -->
     </div><!-- end #wrapper -->
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+
+      <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
     <script src="js/p5.js"></script>
     <script src="js/p5.sound.js"></script>
+    <script src="js/Database.js"></script>
     <script src="js/Snake.js"></script>
     <script src="js/Display.js"></script>
     <script src="js/sketch.js"></script>
