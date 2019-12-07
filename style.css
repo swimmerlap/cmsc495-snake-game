@@ -47,6 +47,14 @@ body {
     text-align: center;
 }
 
+.high-score-table {
+    text-align: center;
+}
+#score-list {
+    list-style-position: inside;
+
+}
+
 /* == Headers == */
 .game-title {
     font-family: "Karmatic Arcade", sans-serif;
