@@ -57,10 +57,12 @@
  * 12/04/2019 - Disabled page scroll using keyboard to keep the canvas in
  *              view at all times while playing the game.
  * (Danny Ramirez)
+ * 
+ * 12/07/2019 - Created the initial database integration.
  */
 
 // Declare variables
-let canvas, element;
+let canvas, database;
 let snake, display, 
 inputLeft, inputRight, inputUp, inputDown, inputDebug, inputRestart,inputMute, inputPause;
 let score, highScore;
@@ -124,10 +126,14 @@ function preload() {
 }
 
 function setup() {
+
     if (debugOn) {
         console.log("Loading game...");
         console.log("Game State =", gameState);
     }
+
+    database = new Database();
+    database.ref.on("value", database.gotData, database.errorData);
 
     preventScroll();
 
@@ -143,8 +149,6 @@ function setup() {
     resetGame();
     
 }
-
-
 
 function update() {
 
