@@ -12,6 +12,10 @@
  * 11/30/2019 - Initially created.
  * (Rachael Schutzman)
  * 
+ * 12/04/2019 - Created MongoDB. Created findHighScore() and findInitials() functions. (Update: No longer using 
+ *              MongoDB. Functions obsolete)
+ * (Rachael Schutzman)
+ *
  * 12/07/2019 - Created the database connnection using Firebase, and the
  * gotData(), errorData() funcitons.
  * (Danny Ramirez)
@@ -69,5 +73,3 @@ class Database {
         console.log("There was an error retreiving the database data!");
         console.log(error);
     }
-
-}
