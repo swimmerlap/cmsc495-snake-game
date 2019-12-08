@@ -90,6 +90,9 @@ let soundTurn;
 let soundCollect;
 let soundOver;
 
+//Declare variable 'getoutpng'
+let getoutpng;
+
 // Initialize grid variables
 let gridSize = 40;
 let gridStartX = 0;
@@ -126,6 +129,9 @@ function preload() {
 }
 
 function setup() {
+	
+   // setup welcome image(getoutpng)
+   getoutpng = loadImage('assets/imgs/getout.png');
 
     if (debugOn) {
         console.log("Loading game...");
@@ -276,7 +282,14 @@ function draw() {
     update();
     // If statement to test gameState and display accordingly
     if (gameState === "welcome") {
-       // placeholder text
+        /**
+        *when game state === welcome, we want to display our "Snake.png"
+	* for now we will use the "getout.png" as a placeholder 
+       */
+       
+       image(getoutpng, 80,0, getoutpng.width/2, getoutpng.height/2);
+	    
+	//placeholder text   
        textFont(regFont);
        fill(255);
        textSize(26);
