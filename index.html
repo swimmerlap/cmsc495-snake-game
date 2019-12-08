@@ -6,25 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CMSC 495 - Group 2: Snake Game</title>
     <link rel="stylesheet" href="style.css">
+    <script src="js/p5.js"></script>
+    <script src="js/p5.sound.js"></script>
+    <script src="js/Database.js"></script>
+    <script src="js/Snake.js"></script>
+    <script src="js/Display.js"></script>
+    <script src="js/sketch.js"></script>
 </head>
 <body>
     <div id="wrapper">
         <header class="main-header">
-            <h1 class="game-title">Snake Game</h1>
+          <!--<h1 class="game-title">Snake Game</h1>-->
+          <!--maybe ping here-->
         </header>
         <div id="canvas-container">
         </div><!-- #canvas-container -->
+       <!--
         <div class="screenshots">
                 <img src="assets/imgs/screenshot.png" alt="Game Screnshot 2" class="fl-right">
                 <img src="assets/imgs/screenshot.png" alt="Game Screnshot 2" class="fl-right">
         </div><!-- end .screenshots -->
+        -->
         <div class="high-score-table">
             <h2>High Scores</h2>
             <ol id="score-list"></ol>
         </div><!-- end .high-score-table -->
         <div class="content">
             <h2>About</h2>
-            <p>The hungry snake searches the darken earth looking for food . If snake eats, you score a point.If the snake collides and eats itself, it dies, and you die too and the game is reset. The player with the highest score wins the game and places their initials at the top of the scoreboard.Enjoy!.</p> 
+            <p>The hungry snake searches the darken earth looking for food . If snake eats, you score a point.If the snake collides and eats itself, it dies, and you die too and the game is reset. The player with the highest score wins the game and places their initials at the top of the scoreboard.Enjoy!</p> 
             <h2>Controls</h2>
             <p>Move: Arrow keys</p>
             <p>Restart: R</p>
@@ -48,11 +57,13 @@
       <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+    <!--
     <script src="js/p5.js"></script>
     <script src="js/p5.sound.js"></script>
     <script src="js/Database.js"></script>
     <script src="js/Snake.js"></script>
     <script src="js/Display.js"></script>
     <script src="js/sketch.js"></script>
+    -->
 </body>
 </html>
